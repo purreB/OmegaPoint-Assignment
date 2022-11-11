@@ -7,9 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Omegapoint.Api.Controllers
 {
   [ApiController]
-  [Route("api/[controller]")]
+  [Route("api/v1/[controller]")]
   public class PdfController : ControllerBase
   {
-
+    [HttpGet]
+    public string GetPdf()
+    {
+      var helloWorld = "Hello, world!";
+      return helloWorld;
+    }
   }
 }
