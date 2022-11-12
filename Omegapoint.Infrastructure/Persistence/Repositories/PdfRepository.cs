@@ -14,15 +14,11 @@ namespace Persistence.Repositories
     private readonly RepositoryDbContext _dbContext;
     public PdfRepository(RepositoryDbContext dbContext) => _dbContext = dbContext;
 
-    public Task<IEnumerable<Pdf>> GetAllAsync(CancellationToken cancellationToken = default)
-    {
-      throw new NotImplementedException();
-    }
+    public async Task<IEnumerable<Pdf>> GetAllAsync(CancellationToken cancellationToken = default) =>
+    await _dbContext.Pdfs.ToListAsync(cancellationToken);
 
-    public Task<Pdf> GetByIdAsync(int pdfId, CancellationToken cancellationToken = default)
-    {
-      throw new NotImplementedException();
-    }
+    public async Task<Pdf> GetByIdAsync(int pdfId, CancellationToken cancellationToken = default) =>
+    await _dbContext.Pdfs.FirstOrDefaultAsync(x => x.Id == pdfId, cancellationToken);
 
     public void Insert(Pdf pdf) => _dbContext.Pdfs.Add(pdf);
   }
