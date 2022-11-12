@@ -8,8 +8,8 @@ namespace Domain.RepositoryInterface
 {
   public interface IPdfRepository
   {
-    Task<IEnumerable<Pdf>> GetAllAsync();
-    Task<Pdf> GetByIdAsync(int pdfId);
+    Task<IEnumerable<Pdf>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<Pdf> GetByIdAsync(int pdfId, CancellationToken cancellationToken = default);
     void Insert(Pdf pdf);
   }
 }
