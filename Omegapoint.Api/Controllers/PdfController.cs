@@ -16,11 +16,18 @@ namespace Omegapoint.Api.Controllers
       var helloWorld = "Hello, world!";
       return helloWorld;
     }
-    // [HttpGet("{pdfId:id}")]
-    // public async Task<IActionResult> GetPdfById(int pdfId, CancellationToken cancellationToken)
-    // {
-    //   var pdfDto = await _serviceManager.PdfService.GetByIdAsync(pdfId, cancellationToken);
-    //   return Ok(pdfDto);
-    // }
+    [HttpGet("{pdfId}")]
+    public async Task<IActionResult> GetPdfById(int pdfId, CancellationToken cancellationToken)
+    {
+      var pdfDto = await _serviceManager.PdfService.GetByIdAsync(pdfId, cancellationToken);
+      return Ok(pdfDto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreatePdf([FromBody] PdfForCreationDto pdfForCreationDto)
+    {
+      var pdfDto = await _serviceManager.PdfService.CreateAsync(pdfForCreationDto);
+      return CreatedAtAction(nameof(GetPdfById), new { pdfId = pdfDto.Id }, pdfDto);
+    }
   }
 }
