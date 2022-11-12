@@ -1,7 +1,7 @@
 namespace Services.Abstractions
 {
-  public class IServiceManager
+  public interface IServiceManager
   {
-    IPdfService pdfService { get; }
+    IPdfService PdfService { get; }
   }
 }
