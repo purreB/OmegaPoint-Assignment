@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Omegapoint.Core\Services\Services.csproj" />
+    <ProjectReference Include="..\Omegapoint.Infrastructure\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\Omegapoint.Core\Domain\Domain.csproj" />
+  </ItemGroup>
 </Project>

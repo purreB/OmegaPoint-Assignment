@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Omegapoint.Infrastructure
 {
-  public sealed class RepositoryDbContext : DbContext
+  public class RepositoryDbContext : DbContext
   {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
