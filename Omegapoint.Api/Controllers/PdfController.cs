@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Services.Abstractions;
 using Contracts;
 
@@ -24,7 +25,7 @@ namespace Omegapoint.Api.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreatePdf([FromBody] PdfForCreationDto pdfForCreationDto)
+    public async Task<IActionResult> CreatePdf([FromForm] PdfForCreationDto pdfForCreationDto)//CreatePdf([FromForm] IFormFile file) //PdfForCreationDto pdfForCreationDto)
     {
       var pdfDto = await _serviceManager.PdfService.CreateAsync(pdfForCreationDto);
       return CreatedAtAction(nameof(GetPdfById), new { pdfId = pdfDto.Id }, pdfDto);
