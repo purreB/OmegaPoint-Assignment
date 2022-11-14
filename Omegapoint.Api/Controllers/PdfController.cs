@@ -15,7 +15,7 @@ namespace Omegapoint.Api.Controllers
     public async Task<IActionResult> GetPdfById(int pdfId, CancellationToken cancellationToken)
     {
       var pdfDto = await _serviceManager.PdfService.GetByIdAsync(pdfId, cancellationToken);
-      return new FileContentResult(pdfDto.Content, "application/octet-stream");
+      return File(pdfDto.Content, "application/octet-stream", pdfDto.FileName);
     }
 
     [HttpPost]
