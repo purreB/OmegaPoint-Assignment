@@ -22,7 +22,7 @@ internal sealed class PdfService : IPdfService
     return pdfsDto;
   }
 
-  public async Task<PdfDto> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+  public async Task<PdfForDownloadDto> GetByIdAsync(int id, CancellationToken cancellationToken = default)
   {
     var pdf = await _repositoryManager.PdfRepository.GetByIdAsync(id, cancellationToken);
     if (pdf is null)
@@ -30,7 +30,7 @@ internal sealed class PdfService : IPdfService
       throw new PdfNotFoundException(id);
     }
 
-    var pdfDto = pdf.Adapt<PdfDto>();
+    var pdfDto = pdf.Adapt<PdfForDownloadDto>();
     return pdfDto;
   }
 
@@ -62,11 +62,6 @@ internal sealed class PdfService : IPdfService
     memoryStream.Close();
     memoryStream.Dispose();
     return pdf.Adapt<PdfDto>();
-
-
-
-
-
     // var pdf = pdfForCreationDto.Adapt<Pdf>();
     // _repositoryManager.PdfRepository.Insert(pdf);
     // await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);

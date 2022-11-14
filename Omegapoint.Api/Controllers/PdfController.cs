@@ -21,11 +21,11 @@ namespace Omegapoint.Api.Controllers
     public async Task<IActionResult> GetPdfById(int pdfId, CancellationToken cancellationToken)
     {
       var pdfDto = await _serviceManager.PdfService.GetByIdAsync(pdfId, cancellationToken);
-      return Ok(pdfDto);
+      return new FileContentResult(pdfDto.Content, "application/octet-stream");
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreatePdf([FromForm] PdfForCreationDto pdfForCreationDto)//CreatePdf([FromForm] IFormFile file) //PdfForCreationDto pdfForCreationDto)
+    public async Task<IActionResult> CreatePdf([FromForm] PdfForCreationDto pdfForCreationDto)
     {
       var pdfDto = await _serviceManager.PdfService.CreateAsync(pdfForCreationDto);
       return CreatedAtAction(nameof(GetPdfById), new { pdfId = pdfDto.Id }, pdfDto);
