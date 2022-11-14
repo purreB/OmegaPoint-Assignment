@@ -38,10 +38,39 @@ internal sealed class PdfService : IPdfService
   {
     //! HERE WE ADD THE ACTUAL UPLOAD
     //* Add Error Handling here??
-    var pdf = pdfForCreationDto.Adapt<Pdf>();
-    _repositoryManager.PdfRepository.Insert(pdf);
+    var file = pdfForCreationDto.File;
+    long FileSize = file.Length;
+    string name = file.FileName.Replace(@"\\\\", @"\\");
+
+    var memoryStream = new MemoryStream();
+
+    await file.CopyToAsync(memoryStream);
+    if (memoryStream.Length > 2097152)
+    {
+      throw new FileSizeBadRequestException(memoryStream.Length);
+    }
+
+    var pdf = new PdfDto()
+    {
+      Name = Path.GetFileName(name),
+      FileSize = memoryStream.Length,
+      Content = memoryStream.ToArray()
+    };
+    var pdfUpload = pdf.Adapt<Pdf>();
+    _repositoryManager.PdfRepository.Insert(pdfUpload);
     await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
+    memoryStream.Close();
+    memoryStream.Dispose();
     return pdf.Adapt<PdfDto>();
+
+
+
+
+
+    // var pdf = pdfForCreationDto.Adapt<Pdf>();
+    // _repositoryManager.PdfRepository.Insert(pdf);
+    // await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
+    // return pdf.Adapt<PdfDto>();
   }
 }
 

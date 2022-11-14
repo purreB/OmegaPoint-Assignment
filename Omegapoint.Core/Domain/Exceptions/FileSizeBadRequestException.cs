@@ -7,7 +7,7 @@ namespace Domain.Exceptions
 {
   public sealed class FileSizeBadRequestException : BadRequestException
   {
-    public FileSizeBadRequestException(string FileSize)
+    public FileSizeBadRequestException(long FileSize)
     : base($"The PDF file size is {FileSize}, unfortunately the API cannot support larger than 2MB")
     {
     }
