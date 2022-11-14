@@ -8,6 +8,7 @@ using Domain.Exceptions;
 using Domain.RepositoryInterface;
 using Mapster;
 using Services.Abstractions;
+using static Services.MD5ChecksumHelper;
 
 namespace Services;
 
@@ -43,19 +44,25 @@ internal sealed class PdfService : IPdfService
     string name = file.FileName.Replace(@"\\\\", @"\\");
 
     var memoryStream = new MemoryStream();
-
+    var checksum = GetMD5Checksum(memoryStream);
     await file.CopyToAsync(memoryStream);
     if (memoryStream.Length > 2097152)
     {
       throw new FileSizeBadRequestException(memoryStream.Length);
+    }
+    if (!name.EndsWith(".pdf"))
+    {
+      throw new FileTypeBadRequestException(name);
     }
 
     var pdf = new PdfDto()
     {
       Name = Path.GetFileName(name),
       FileSize = memoryStream.Length,
-      Content = memoryStream.ToArray()
+      Content = memoryStream.ToArray(),
+      Checksum = checksum
     };
+
     var pdfUpload = pdf.Adapt<Pdf>();
     _repositoryManager.PdfRepository.Insert(pdfUpload);
     await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);

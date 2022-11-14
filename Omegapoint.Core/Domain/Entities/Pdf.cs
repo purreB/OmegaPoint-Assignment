@@ -6,5 +6,6 @@ namespace Domain.Entities
     public string? Name { get; set; }
     public long FileSize { get; set; }
     public byte[] Content { get; set; } = null!;
+    public string Checksum { get; set; } = null!;
   }
 }
