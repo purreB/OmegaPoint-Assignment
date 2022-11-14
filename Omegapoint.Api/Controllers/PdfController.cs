@@ -11,12 +11,6 @@ namespace Omegapoint.Api.Controllers
   {
     private readonly IServiceManager _serviceManager;
     public PdfController(IServiceManager serviceManager) => _serviceManager = serviceManager;
-    [HttpGet]
-    public async Task<IActionResult> GetPdfs(CancellationToken cancellationToken)
-    {
-      var pdfs = await _serviceManager.PdfService.GetAllAsync(cancellationToken);
-      return Ok(pdfs);
-    }
     [HttpGet("{pdfId}")]
     public async Task<IActionResult> GetPdfById(int pdfId, CancellationToken cancellationToken)
     {

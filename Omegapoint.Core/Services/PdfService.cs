@@ -37,15 +37,25 @@ internal sealed class PdfService : IPdfService
 
   public async Task<PdfDto> CreateAsync(PdfForCreationDto pdfForCreationDto, CancellationToken cancellationToken = default)
   {
-    //! HERE WE ADD THE ACTUAL UPLOAD
-    //* Add Error Handling here??
     var file = pdfForCreationDto.File;
     long FileSize = file.Length;
     string name = file.FileName.Replace(@"\\\\", @"\\");
 
     var memoryStream = new MemoryStream();
+
     var checksum = GetMD5Checksum(memoryStream);
+
+    var pdfs = await GetAllAsync();
+    foreach (var savedPdf in pdfs)
+    {
+      if (savedPdf.FileName == name && savedPdf.Checksum == checksum)
+      {
+        throw new DuplicateBadRequestException(name, checksum);
+      }
+    }
+
     await file.CopyToAsync(memoryStream);
+
     if (memoryStream.Length > 2097152)
     {
       throw new FileSizeBadRequestException(memoryStream.Length);
@@ -57,7 +67,7 @@ internal sealed class PdfService : IPdfService
 
     var pdf = new PdfDto()
     {
-      Name = Path.GetFileName(name),
+      FileName = Path.GetFileName(name),
       FileSize = memoryStream.Length,
       Content = memoryStream.ToArray(),
       Checksum = checksum
@@ -69,10 +79,6 @@ internal sealed class PdfService : IPdfService
     memoryStream.Close();
     memoryStream.Dispose();
     return pdf.Adapt<PdfDto>();
-    // var pdf = pdfForCreationDto.Adapt<Pdf>();
-    // _repositoryManager.PdfRepository.Insert(pdf);
-    // await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
-    // return pdf.Adapt<PdfDto>();
   }
 }
 
