@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omegapoint.Api", "Omegapoint.Api\Omegapoint.Api.csproj", "{CDE909D2-7E12-4165-AFDA-05A2F07F5402}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Omegapoint.Core", "Omegapoint.Core", "{D246B5E6-E4F7-41C3-A172-8E090AC0ED36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Omegapoint.Core\Contracts\Contracts.csproj", "{5B777AD3-6A16-43F0-956F-58F260E5217D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Omegapoint.Core\Domain\Domain.csproj", "{980A335B-582D-4169-92A1-9FC2CC630D96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Omegapoint.Core\Services\Services.csproj", "{40BE7386-6CCF-44C0-9EF7-EE40127A563C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Abstractions", "Omegapoint.Core\Services.Abstractions\Services.Abstractions.csproj", "{D32C05ED-1C24-48F3-828E-1BB047876340}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Omegapoint.Infrastructure", "Omegapoint.Infrastructure", "{86D6D383-E194-4EB8-95AE-4250DA9E9242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Omegapoint.Infrastructure\Persistence\Persistence.csproj", "{AA80C337-51B4-425C-B35D-7DBFA83529BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDE909D2-7E12-4165-AFDA-05A2F07F5402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE909D2-7E12-4165-AFDA-05A2F07F5402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE909D2-7E12-4165-AFDA-05A2F07F5402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE909D2-7E12-4165-AFDA-05A2F07F5402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B777AD3-6A16-43F0-956F-58F260E5217D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B777AD3-6A16-43F0-956F-58F260E5217D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B777AD3-6A16-43F0-956F-58F260E5217D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B777AD3-6A16-43F0-956F-58F260E5217D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980A335B-582D-4169-92A1-9FC2CC630D96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980A335B-582D-4169-92A1-9FC2CC630D96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980A335B-582D-4169-92A1-9FC2CC630D96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980A335B-582D-4169-92A1-9FC2CC630D96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40BE7386-6CCF-44C0-9EF7-EE40127A563C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40BE7386-6CCF-44C0-9EF7-EE40127A563C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40BE7386-6CCF-44C0-9EF7-EE40127A563C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40BE7386-6CCF-44C0-9EF7-EE40127A563C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32C05ED-1C24-48F3-828E-1BB047876340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32C05ED-1C24-48F3-828E-1BB047876340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32C05ED-1C24-48F3-828E-1BB047876340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32C05ED-1C24-48F3-828E-1BB047876340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA80C337-51B4-425C-B35D-7DBFA83529BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA80C337-51B4-425C-B35D-7DBFA83529BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA80C337-51B4-425C-B35D-7DBFA83529BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA80C337-51B4-425C-B35D-7DBFA83529BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B777AD3-6A16-43F0-956F-58F260E5217D} = {D246B5E6-E4F7-41C3-A172-8E090AC0ED36}
+		{980A335B-582D-4169-92A1-9FC2CC630D96} = {D246B5E6-E4F7-41C3-A172-8E090AC0ED36}
+		{40BE7386-6CCF-44C0-9EF7-EE40127A563C} = {D246B5E6-E4F7-41C3-A172-8E090AC0ED36}
+		{D32C05ED-1C24-48F3-828E-1BB047876340} = {D246B5E6-E4F7-41C3-A172-8E090AC0ED36}
+		{AA80C337-51B4-425C-B35D-7DBFA83529BE} = {86D6D383-E194-4EB8-95AE-4250DA9E9242}
+	EndGlobalSection
+EndGlobal
